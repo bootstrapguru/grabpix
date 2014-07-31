@@ -34,9 +34,7 @@ $('#source').change(function(){
           var currentPost = results.response.posts[i],
               img_url = currentPost.photos[0].original_size.url,
               small_img_url = currentPost.photos[0].alt_sizes[2].url,
-              medium_img_url = currentPost.photos[0].alt_sizes[1].url,
               blogInfo = results.response.blog;
-
               //addThumbToContainer(img_url,blogInfo.title);
           // todo: cleanup the code below
 
@@ -46,8 +44,8 @@ $('#source').change(function(){
         "<img class='image-click' src='"+small_img_url+"'  data-big_image='"+img_url+"'  alt=''>" +
         "<div class='image-description'>" +
             "<ul class='list-inline image-sizes'>" +
-                "<li class='one'><a class='image-size thumb' href='#' data-big_image='"+small_img_url+"'><i class='fa fa-file-image-o '></i><br>Thumb</a></li>" +
-                "<li class='two'><a class='image-size medium' href='#' data-big_image='"+medium_img_url+"'><i class='fa fa-image '></i><br>Medium</a></a></li>" +
+                "<li class='one'><a class='image-size thumb' href='#' data-big_image='"+img_url+"'><i class='fa fa-file-image-o '></i><br>Thumb</a></li>" +
+                "<li class='two'><a class='image-size medium' href='#' data-big_image='"+img_url+"'><i class='fa fa-image '></i><br>Medium</a></a></li>" +
                 "<li class='three'><a class='image-size large' href='#' data-big_image='"+img_url+"'><i class='fa fa-arrows-alt '></i><br>Large</a></a></li>" +
             "</ul>" +
             "<div class='author'>" +
@@ -58,8 +56,7 @@ $('#source').change(function(){
 
 
 
-          thumb.find('a.image-size').on('click',function(e) {
-            e.preventDefault();
+          $('.image-size').on('click',function() {
 
           var image_url = $(this).data('big_image');
           // alert(image_url);
@@ -67,8 +64,8 @@ $('#source').change(function(){
           downloadAndOpenInPhotoshop(image_url, cleanFileName(image_url));
         
           setTimeout(function(){
-             $('.fa-circle-o-notch').removeClass('fa-circle-o-notch fa-spin');
-             //alert('vj');
+             $('fa-circle-o-notch').removeClass('fa-circle-o-notch');
+             alert('vj');
           }, 1000);
         })
         }
